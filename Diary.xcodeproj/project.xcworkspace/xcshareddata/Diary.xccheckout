@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>C68057E3-BCA2-41D0-BF05-329D47589AE3</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Diary</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>459631A8FF57745F8F7170319CB18828AF82D13C</key>
+		<string>https://github.com/kulfy/Diary.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Diary.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>459631A8FF57745F8F7170319CB18828AF82D13C</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/kulfy/Diary.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>459631A8FF57745F8F7170319CB18828AF82D13C</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>459631A8FF57745F8F7170319CB18828AF82D13C</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Diary</string>
+		</dict>
+	</array>
+</dict>
+</plist>

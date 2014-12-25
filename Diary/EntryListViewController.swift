@@ -13,7 +13,7 @@ class EntryListViewController: UITableViewController, NSFetchedResultsController
     
     
     let kCellIdentifier = "CellIdentifier"
-        
+    
     override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!)
     {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -33,10 +33,10 @@ class EntryListViewController: UITableViewController, NSFetchedResultsController
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
+        
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
@@ -49,23 +49,23 @@ class EntryListViewController: UITableViewController, NSFetchedResultsController
         //tableView.registerNib(UINib(nibName: "NibTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: kCellIdentifier)
         
         // uncomment this line to load table view cells from IB
-
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     // MARK: - Table view data source
-
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
         //return 0
         return self.fetchedResultsController.sections!.count;
     }
-
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
@@ -73,11 +73,42 @@ class EntryListViewController: UITableViewController, NSFetchedResultsController
         let sectionInfo = self.fetchedResultsController.sections![section] as NSFetchedResultsSectionInfo
         return sectionInfo.numberOfObjects
     }
-
-     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    
+    
+    /*
+    // Override to support editing the table view.
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    if editingStyle == .Delete {
+    // Delete the row from the data source
+    tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+    } else if editingStyle == .Insert {
+    // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+    }
+    }
+    */
+    
+    //delete - part1
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        let entry: DiaryEntry = self.fetchedResultsController.objectAtIndexPath(indexPath) as DiaryEntry;
+        let coreDataStack: CoreDataStack = CoreDataStack.defaultStack;
+        let managedContext: NSManagedObjectContext = coreDataStack.managedObjectContext!
+        
+        managedContext.deleteObject(entry);
+        
+        coreDataStack.saveContext();
+        
+    }
+    
+    //delete - part2
+    override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+        return UITableViewCellEditingStyle.Delete;
+    }
+    
+    //section name
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         //let sectionInfo :NSFetchedResultsSectionInfo = self.fetchedResultsController?.sections(section);
-        let sectionInfo : NSFetchedResultsSectionInfo = self.fetchedResultsController.sections(section);
-           //var sectionnames = sectionInfo[section]
+        let sectionInfo : NSFetchedResultsSectionInfo = self.fetchedResultsController.sections?[section] as NSFetchedResultsSectionInfo;
+        //var sectionnames = sectionInfo[section]
         
         return sectionInfo.name;
         
@@ -90,7 +121,7 @@ class EntryListViewController: UITableViewController, NSFetchedResultsController
         let sortDescriptors = [sortDescriptor]
         fetchRequest.sortDescriptors = [sortDescriptor]
         return fetchRequest
-      
+        
     }
     
     
@@ -105,20 +136,20 @@ class EntryListViewController: UITableViewController, NSFetchedResultsController
         let fetchRequest: NSFetchRequest = self.entryListFetchRequest();
         
         let managedContext: NSManagedObjectContext = coreDataStack.managedObjectContext!
-    
+        
         let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedContext, sectionNameKeyPath: "sectionName", cacheName: nil)
         
         aFetchedResultsController.delegate = self
         
         self._fetchedResultsController = aFetchedResultsController
-    
+        
         return _fetchedResultsController!;
-    
+        
     }
     
     var _fetchedResultsController: NSFetchedResultsController?
-
-   
+    
+    
     
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -128,7 +159,7 @@ class EntryListViewController: UITableViewController, NSFetchedResultsController
         
         let CellIdentifier: NSString = "Cell";
         let cell = tableView.dequeueReusableCellWithIdentifier("CellIdentifier", forIndexPath: indexPath) as UITableViewCell
-
+        
         // Configure the cell...
         
         let entry: DiaryEntry = self.fetchedResultsController.objectAtIndexPath(indexPath) as DiaryEntry;
@@ -138,58 +169,94 @@ class EntryListViewController: UITableViewController, NSFetchedResultsController
         return cell;
     }
     
+    
     /* called first
     begins update to `UITableView`
     ensures all updates are animated simultaneously */
     func controllerWillChangeContent(controller: NSFetchedResultsController) {
-        self.tableView.reloadData()
+        
+        //if animation not required delete below method, controllerdidChangeContent and just use the reloadData below.
+        //self.tableView.reloadData()
+        
+        self.tableView.beginUpdates();
+        
+    }
+    
+    //called when a row is inserted,deleted, changed or moved.
+    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+        switch (type){
+        case NSFetchedResultsChangeType.Insert:
+            self.tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: UITableViewRowAnimation.Automatic);
+            break;
+        case NSFetchedResultsChangeType.Delete:
+            self.tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation:UITableViewRowAnimation.Automatic );
+            break;
+            
+        case NSFetchedResultsChangeType.Update:
+            self.tableView.reloadRowsAtIndexPaths([indexPath!], withRowAnimation:UITableViewRowAnimation.Automatic );
+            break;
+        default:
+            return
+            
+        }
+    }
+    
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        self.tableView.endUpdates();
     }
     
     
+    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
+        switch (type){
+        case NSFetchedResultsChangeType.Insert:
+            self.tableView.insertRowsAtIndexPaths([NSIndexSet(index: sectionIndex)], withRowAnimation: UITableViewRowAnimation.Automatic);
+            break;
+        case NSFetchedResultsChangeType.Delete:
+            self.tableView.deleteRowsAtIndexPaths([NSIndexSet(index: sectionIndex)], withRowAnimation:UITableViewRowAnimation.Automatic );
+            break;
+        default:
+            return
+        }
+    }
+    
+    
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+    
+        
+    }
 
+    
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the specified item to be editable.
-        return true
+    // Return NO if you do not want the specified item to be editable.
+    return true
     }
     */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
+    
+    
+    
     /*
     // Override to support rearranging the table view.
     override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
+    
     }
     */
-
+    
     /*
     // Override to support conditional rearranging of the table view.
     override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the item to be re-orderable.
-        return true
+    // Return NO if you do not want the item to be re-orderable.
+    return true
     }
     */
+    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
 }

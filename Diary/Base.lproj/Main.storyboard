@@ -60,6 +60,9 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mX5-JR-XBs" id="g32-kc-gJe">
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="q0t-EJ-HEq" kind="presentation" identifier="edit" id="r1R-H3-RVe"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -118,4 +121,7 @@
             <point key="canvasLocation" x="924.5" y="-375.5"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="r1R-H3-RVe"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -10,8 +10,8 @@ import UIKit
 import CoreData
 
 
-class NewEntryViewController: UIViewController {
-
+class EntryViewController: UIViewController {
+        
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -56,9 +56,16 @@ class NewEntryViewController: UIViewController {
         
         entry.body = self.textField.text;
         
-        //let dated: NSDate = NSDate();
-        
         entry.date = NSTimeInterval();
+        
+        //let dated: NSTimeInterval = NSTimeInterval;
+        
+        //entry.date = dated;
+        
+        
+        //date
+         //let dated: NSDate = NSDate();
+         //entry.date = dated;
             
         coreDataStack.saveContext();
         
