@@ -14,6 +14,11 @@
 		174F69FD1A4A1B070018CDE2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 174F69FC1A4A1B070018CDE2 /* Images.xcassets */; };
 		174F6A001A4A1B070018CDE2 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 174F69FE1A4A1B070018CDE2 /* LaunchScreen.xib */; };
 		174F6A0C1A4A1B080018CDE2 /* DiaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174F6A0B1A4A1B080018CDE2 /* DiaryTests.swift */; };
+		174F6A161A4A1E1A0018CDE2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 174F6A151A4A1E1A0018CDE2 /* CoreData.framework */; };
+		174F6A1A1A4A2F4E0018CDE2 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174F6A191A4A2F4E0018CDE2 /* CoreDataStack.swift */; };
+		174F6A1E1A4A47B20018CDE2 /* NewEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174F6A1D1A4A47B20018CDE2 /* NewEntryViewController.swift */; };
+		174F6A251A4A73B10018CDE2 /* DiaryEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174F6A1B1A4A3CE10018CDE2 /* DiaryEntry.swift */; };
+		174F6A271A4A8B6E0018CDE2 /* EntryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174F6A261A4A8B6E0018CDE2 /* EntryListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +43,11 @@
 		174F6A051A4A1B080018CDE2 /* DiaryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DiaryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		174F6A0A1A4A1B080018CDE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		174F6A0B1A4A1B080018CDE2 /* DiaryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryTests.swift; sourceTree = "<group>"; };
+		174F6A151A4A1E1A0018CDE2 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		174F6A191A4A2F4E0018CDE2 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		174F6A1B1A4A3CE10018CDE2 /* DiaryEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryEntry.swift; sourceTree = "<group>"; };
+		174F6A1D1A4A47B20018CDE2 /* NewEntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewEntryViewController.swift; sourceTree = "<group>"; };
+		174F6A261A4A8B6E0018CDE2 /* EntryListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				174F6A161A4A1E1A0018CDE2 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +72,7 @@
 		174F69E41A4A1B070018CDE2 = {
 			isa = PBXGroup;
 			children = (
+				174F6A151A4A1E1A0018CDE2 /* CoreData.framework */,
 				174F69EF1A4A1B070018CDE2 /* Diary */,
 				174F6A081A4A1B080018CDE2 /* DiaryTests */,
 				174F69EE1A4A1B070018CDE2 /* Products */,
@@ -80,11 +92,15 @@
 			isa = PBXGroup;
 			children = (
 				174F69F21A4A1B070018CDE2 /* AppDelegate.swift */,
+				174F6A191A4A2F4E0018CDE2 /* CoreDataStack.swift */,
 				174F69F71A4A1B070018CDE2 /* ViewController.swift */,
+				174F6A261A4A8B6E0018CDE2 /* EntryListViewController.swift */,
 				174F69F91A4A1B070018CDE2 /* Main.storyboard */,
+				174F6A1D1A4A47B20018CDE2 /* NewEntryViewController.swift */,
 				174F69FC1A4A1B070018CDE2 /* Images.xcassets */,
 				174F69FE1A4A1B070018CDE2 /* LaunchScreen.xib */,
 				174F69F41A4A1B070018CDE2 /* Diary.xcdatamodeld */,
+				174F6A1B1A4A3CE10018CDE2 /* DiaryEntry.swift */,
 				174F69F01A4A1B070018CDE2 /* Supporting Files */,
 			);
 			path = Diary;
@@ -215,9 +231,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				174F6A251A4A73B10018CDE2 /* DiaryEntry.swift in Sources */,
 				174F69F81A4A1B070018CDE2 /* ViewController.swift in Sources */,
 				174F69F31A4A1B070018CDE2 /* AppDelegate.swift in Sources */,
 				174F69F61A4A1B070018CDE2 /* Diary.xcdatamodeld in Sources */,
+				174F6A1E1A4A47B20018CDE2 /* NewEntryViewController.swift in Sources */,
+				174F6A271A4A8B6E0018CDE2 /* EntryListViewController.swift in Sources */,
+				174F6A1A1A4A2F4E0018CDE2 /* CoreDataStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,6 +360,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				INFOPLIST_FILE = Diary/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -350,6 +372,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				INFOPLIST_FILE = Diary/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -409,6 +433,7 @@
 				174F6A111A4A1B080018CDE2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		174F6A121A4A1B080018CDE2 /* Build configuration list for PBXNativeTarget "DiaryTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +442,7 @@
 				174F6A141A4A1B080018CDE2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
