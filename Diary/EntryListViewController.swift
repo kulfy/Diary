@@ -12,7 +12,7 @@ import CoreData
 class EntryListViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
     
-    let kCellIdentifier = "CellIdentifier"
+    let kCellIdentifier: NSString = "CellIdentifier"
     
     override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!)
     {
@@ -226,7 +226,15 @@ class EntryListViewController: UITableViewController, NSFetchedResultsController
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    
+
+        if(segue.identifier == "edit"){
+            let cell: UITableViewCell  = sender? as UITableViewCell;
+            let indexPath: NSIndexPath! = self.tableView.indexPathForCell(cell);
+            let navigationController: UINavigationController = segue.destinationViewController as UINavigationController;
+            let entryViewController:EntryViewController = navigationController.topViewController as EntryViewController;
+            entryViewController.entry = self.fetchedResultsController.objectAtIndexPath(indexPath) as? DiaryEntry;
+            
+        }
         
     }
 

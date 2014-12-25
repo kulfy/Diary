@@ -11,9 +11,30 @@ import CoreData
 
 
 class EntryViewController: UIViewController {
+    
+    var entry:DiaryEntry? = DiaryEntry();
+    
+    @IBOutlet var textField: UITextField!
+    
+    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!)
+    {
+        textField = UITextField();
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+    
+    required init(coder aDecoder: NSCoder)
+    {
+        super.init(coder: aDecoder)
         
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if self.entry != nil {
+            self.textField.text = self.entry?.body;
+        }
 
         // Do any additional setup after loading the view.
     }
@@ -22,9 +43,6 @@ class EntryViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    @IBOutlet var textField: UITextField!
     
     
     /*
@@ -72,9 +90,24 @@ class EntryViewController: UIViewController {
     }
  
     
+    func updateDiaryEntry(){
+        self.entry?.body = self.textField.text;
+        
+        let coreDataStack: CoreDataStack = CoreDataStack.defaultStack;
+        
+        coreDataStack.saveContext();
+        
+    }
     
     @IBAction func doneWasPressed(sender: AnyObject) {
-        [self.insertDiaryEntry()];
+        
+        if self.entry != nil{
+            [self.updateDiaryEntry()];
+        }else{
+            [self.insertDiaryEntry()];
+
+        }
+        
         [self .dismissSelf()];
     }
     
