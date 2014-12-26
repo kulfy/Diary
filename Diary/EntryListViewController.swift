@@ -32,6 +32,9 @@ class EntryListViewController: UITableViewController, NSFetchedResultsController
     }
     
     override func viewDidLoad() {
+        
+        println("EntryListViewController - viewDidLoad()");
+
         super.viewDidLoad()
         
         // Uncomment the following line to preserve selection between presentations
@@ -115,7 +118,6 @@ class EntryListViewController: UITableViewController, NSFetchedResultsController
     }
     
     func entryListFetchRequest() -> NSFetchRequest{
-        
         let fetchRequest = NSFetchRequest(entityName: "DiaryEntry")
         let sortDescriptor = NSSortDescriptor(key:"date", ascending: false)
         let sortDescriptors = [sortDescriptor]
@@ -226,17 +228,15 @@ class EntryListViewController: UITableViewController, NSFetchedResultsController
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-        println("I am in edit1");
-        println(segue.identifier);
-
-        if segue.identifier? == "edit" {
-            println("I am in edit2");
-             var cell: UITableViewCell  = sender? as UITableViewCell;
-             var indexPath: NSIndexPath! = self.tableView.indexPathForCell(cell);
-             var navigationController: UINavigationController = segue.destinationViewController as UINavigationController;
-             var entryViewController:EntryViewController = navigationController.topViewController as EntryViewController;
+        println("prepareForSegue");
+        println("segue \(segue.identifier)");
+        if segue.identifier == "edit" {
+            println("inside prepareForSegue");
+             let cell: UITableViewCell  = sender? as UITableViewCell;
+             let indexPath: NSIndexPath! = self.tableView.indexPathForCell(cell);
+             let navigationController: UINavigationController = segue.destinationViewController as UINavigationController;
+             let entryViewController:EntryViewController = navigationController.topViewController as EntryViewController;
             entryViewController.entry = self.fetchedResultsController.objectAtIndexPath(indexPath) as? DiaryEntry;
-            
         }
         
     }

@@ -43,8 +43,9 @@ class EntryViewController: UIViewController {
     
     
     override func viewDidLoad() {
+        println("EntryViewController - viewDidLoad()");
+
         super.viewDidLoad()
-        println("in viewdidload");
        // println("viewDidLoad self.entry \(self.entry)");
 
         
@@ -80,6 +81,8 @@ class EntryViewController: UIViewController {
     
     func insertDiaryEntry(){
         
+        println("insertDiaryEntry");
+        
         //let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
         
         let coreDataStack: CoreDataStack = CoreDataStack.defaultStack;
@@ -108,10 +111,7 @@ class EntryViewController: UIViewController {
     
     func updateDiaryEntry(){
         
-        println("in updateDiaryEntry");
-        
-        //println(self.entry?.body);
-
+        println("updateDiaryEntry");
 
         self.entry?.body = self.textField.text;
         
@@ -122,8 +122,7 @@ class EntryViewController: UIViewController {
     }
     
     @IBAction func doneWasPressed(sender: AnyObject) {
-        println("in doneWasPressed");
-
+        println("doneWasPressed");
         if self.entry != nil{
             [self.updateDiaryEntry()];
         }else{
@@ -136,6 +135,7 @@ class EntryViewController: UIViewController {
     
     
     @IBAction func cancelWasPressed(sender: AnyObject) {
+        println("cancelWasPressed");
         [self .dismissSelf()];
     }
 }
