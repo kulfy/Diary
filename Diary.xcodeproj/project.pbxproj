@@ -21,6 +21,8 @@
 		174F6A1E1A4A47B20018CDE2 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174F6A1D1A4A47B20018CDE2 /* EntryViewController.swift */; };
 		174F6A251A4A73B10018CDE2 /* DiaryEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174F6A1B1A4A3CE10018CDE2 /* DiaryEntry.swift */; };
 		174F6A271A4A8B6E0018CDE2 /* EntryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174F6A261A4A8B6E0018CDE2 /* EntryListViewController.swift */; };
+		178A884A1A4D39380021F479 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178A88491A4D39380021F479 /* NavigationController.swift */; };
+		178A884C1A4D44900021F479 /* EntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178A884B1A4D44900021F479 /* EntryCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +56,8 @@
 		174F6A1B1A4A3CE10018CDE2 /* DiaryEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiaryEntry.swift; sourceTree = "<group>"; };
 		174F6A1D1A4A47B20018CDE2 /* EntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
 		174F6A261A4A8B6E0018CDE2 /* EntryListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryListViewController.swift; sourceTree = "<group>"; };
+		178A88491A4D39380021F479 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		178A884B1A4D44900021F479 /* EntryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,17 +104,19 @@
 		174F69EF1A4A1B070018CDE2 /* Diary */ = {
 			isa = PBXGroup;
 			children = (
+				174F69F91A4A1B070018CDE2 /* Main.storyboard */,
+				174F69F41A4A1B070018CDE2 /* Diary.xcdatamodeld */,
 				174F69F21A4A1B070018CDE2 /* AppDelegate.swift */,
 				174F6A191A4A2F4E0018CDE2 /* CoreDataStack.swift */,
-				174F69F71A4A1B070018CDE2 /* ViewController.swift */,
-				174F6A261A4A8B6E0018CDE2 /* EntryListViewController.swift */,
-				174F69F91A4A1B070018CDE2 /* Main.storyboard */,
-				174F6A1D1A4A47B20018CDE2 /* EntryViewController.swift */,
-				174F69FC1A4A1B070018CDE2 /* Images.xcassets */,
-				174F69FE1A4A1B070018CDE2 /* LaunchScreen.xib */,
-				1709AD041A4BAD38001FC05E /* DateFormatManager.swift */,
-				174F69F41A4A1B070018CDE2 /* Diary.xcdatamodeld */,
 				174F6A1B1A4A3CE10018CDE2 /* DiaryEntry.swift */,
+				174F69F71A4A1B070018CDE2 /* ViewController.swift */,
+				178A88491A4D39380021F479 /* NavigationController.swift */,
+				178A884B1A4D44900021F479 /* EntryCell.swift */,
+				174F6A261A4A8B6E0018CDE2 /* EntryListViewController.swift */,
+				174F6A1D1A4A47B20018CDE2 /* EntryViewController.swift */,
+				1709AD041A4BAD38001FC05E /* DateFormatManager.swift */,
+				174F69FE1A4A1B070018CDE2 /* LaunchScreen.xib */,
+				174F69FC1A4A1B070018CDE2 /* Images.xcassets */,
 				174F69F01A4A1B070018CDE2 /* Supporting Files */,
 			);
 			path = Diary;
@@ -248,6 +254,8 @@
 				1709AD051A4BAD38001FC05E /* DateFormatManager.swift in Sources */,
 				174F6A1E1A4A47B20018CDE2 /* EntryViewController.swift in Sources */,
 				174F6A271A4A8B6E0018CDE2 /* EntryListViewController.swift in Sources */,
+				178A884A1A4D39380021F479 /* NavigationController.swift in Sources */,
+				178A884C1A4D44900021F479 /* EntryCell.swift in Sources */,
 				170954211A4CC7DB002F0B74 /* CustomObject.m in Sources */,
 				174F6A1A1A4A2F4E0018CDE2 /* CoreDataStack.swift in Sources */,
 			);

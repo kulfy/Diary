@@ -18,7 +18,7 @@ class DiaryEntry: NSManagedObject {
     @NSManaged var imageData: NSData
     @NSManaged var mood: Int16
     @NSManaged var location: String
-    
+
 
     var sectionName: NSString{
         

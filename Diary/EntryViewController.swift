@@ -29,14 +29,12 @@ class EntryViewController: UIViewController {
     
     @IBOutlet var textField: UITextField!
     
-    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!)
-    {
+    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!){
         textField = UITextField();
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
-    required init(coder aDecoder: NSCoder)
-    {
+    required init(coder aDecoder: NSCoder){
         super.init(coder: aDecoder)
         
     }
@@ -93,16 +91,9 @@ class EntryViewController: UIViewController {
         
         entry.body = self.textField.text;
         
-        entry.date = NSTimeInterval();
+        var date: NSDate = NSDate();
         
-        //let dated: NSTimeInterval = NSTimeInterval;
-        
-        //entry.date = dated;
-        
-        
-        //date
-         //let dated: NSDate = NSDate();
-         //entry.date = dated;
+        entry.date = date.timeIntervalSince1970;
             
         coreDataStack.saveContext();
         

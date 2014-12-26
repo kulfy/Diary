@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="kAK-1H-zPO">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="kAK-1H-zPO">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
@@ -8,16 +8,13 @@
         <scene sceneID="B8v-FG-Ip0">
             <objects>
                 <viewController id="KH6-9w-iWq" customClass="EntryViewController" customModule="Diary" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Mnx-Gs-52V"/>
-                        <viewControllerLayoutGuide type="bottom" id="h9p-Zo-cNb"/>
-                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="DBT-ov-hjD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7KG-Hg-chc">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="7KG-Hg-chc">
                                 <rect key="frame" x="16" y="94" width="338" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -36,32 +33,66 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="667"/>
                     <connections>
                         <outlet property="textField" destination="7KG-Hg-chc" id="uG9-rw-SnL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TBt-2P-mkh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1473.5" y="-375.5"/>
+            <point key="canvasLocation" x="1216.5" y="-355.5"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Diary Entries-->
         <scene sceneID="L7h-rC-Szq">
             <objects>
                 <tableViewController id="K8R-hX-Z6v" customClass="EntryListViewController" customModule="Diary" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="1qD-Zb-Qdz">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="215" sectionHeaderHeight="22" sectionFooterHeight="22" id="1qD-Zb-Qdz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="mX5-JR-XBs">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="215" id="mX5-JR-XBs" customClass="EntryCell" customModule="Diary" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mX5-JR-XBs" id="g32-kc-gJe">
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SBm-B8-i1q">
+                                            <rect key="frame" x="102" y="8" width="230" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                            <color key="textColor" red="0.23529411764705882" green="0.30588235294117649" blue="0.42745098039215684" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="J3x-rd-yx1">
+                                            <rect key="frame" x="172" y="185" width="182" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.77647058823529413" green="0.77647058823529413" blue="0.77647058823529413" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="vo4-Yq-42K">
+                                            <rect key="frame" x="17" y="8" width="71" height="71"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="e7G-gb-TL2">
+                                            <rect key="frame" x="66" y="59" width="30" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Body Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="D9N-go-nwJ">
+                                            <rect key="frame" x="104" y="45" width="202" height="101"/>
+                                            <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.23529411764705882" green="0.30588235294117649" blue="0.42745098039215684" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="q0t-EJ-HEq" kind="presentation" identifier="edit" id="DGU-HQ-y7H"/>
+                                    <outlet property="bodyLabel" destination="D9N-go-nwJ" id="80B-7m-Kmh"/>
+                                    <outlet property="dateLabel" destination="SBm-B8-i1q" id="rtI-cY-F2o"/>
+                                    <outlet property="locationLabel" destination="J3x-rd-yx1" id="Zza-0i-CSu"/>
+                                    <outlet property="mainImageView" destination="vo4-Yq-42K" id="ure-o4-e0F"/>
+                                    <outlet property="moodImageView" destination="e7G-gb-TL2" id="fDC-XA-Lcp"/>
+                                    <segue destination="q0t-EJ-HEq" kind="modal" identifier="edit" id="DGU-HQ-y7H"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -70,22 +101,22 @@
                             <outlet property="delegate" destination="K8R-hX-Z6v" id="2co-Jy-lXL"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="puO-HG-Vwp">
+                    <navigationItem key="navigationItem" title="Diary Entries" id="puO-HG-Vwp">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="67v-0i-y4A">
                             <connections>
-                                <segue destination="q0t-EJ-HEq" kind="presentation" id="JpE-HK-slV"/>
+                                <segue destination="q0t-EJ-HEq" kind="modal" id="JpE-HK-slV"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jJo-Mk-JSP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="924.5" y="370.5"/>
+            <point key="canvasLocation" x="1033.5" y="523.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ybW-vA-vKd">
             <objects>
-                <navigationController id="kAK-1H-zPO" sceneMemberID="viewController">
+                <navigationController id="kAK-1H-zPO" customClass="NavigationController" customModule="Diary" customModuleProvider="target" sceneMemberID="viewController">
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="KJt-aP-qwe">
@@ -98,12 +129,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zvy-J5-ay8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="452.5" y="370.5"/>
+            <point key="canvasLocation" x="534.5" y="523.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="8ag-Ue-ILj">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="q0t-EJ-HEq" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="q0t-EJ-HEq" customClass="NavigationController" customModule="Diary" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
@@ -118,9 +149,14 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oaz-kE-fNs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="924.5" y="-375.5"/>
+            <point key="canvasLocation" x="731.5" y="-355.5"/>
         </scene>
     </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="DGU-HQ-y7H"/>
     </inferredMetricsTieBreakers>

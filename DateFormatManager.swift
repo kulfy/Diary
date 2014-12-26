@@ -20,6 +20,15 @@ class DateformatterManager {
         return Static.instance
     }
     
+    class var dateFormatSpelledManager : DateformatterManager {
+        struct Static {
+            static let instance : DateformatterManager = DateformatterManager()
+        }
+        // date shown as date in some tableviews
+        Static.instance.formatter.dateFormat = "EEEE, MMMMM d yyyy"
+        return Static.instance
+    }
+    
     class var timeFormatManager : DateformatterManager {
         struct Static {
             static let instance : DateformatterManager = DateformatterManager()

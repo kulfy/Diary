@@ -11,32 +11,23 @@ import CoreData
 
 class EntryListViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
-    
     let kCellIdentifier: NSString = "CellIdentifier"
     
-    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!)
-    {
+    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!){
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
-    override init(style: UITableViewStyle)
-    {
+    override init(style: UITableViewStyle){
         super.init(style: style)
-        
     }
     
-    required init(coder aDecoder: NSCoder)
-    {
+    required init(coder aDecoder: NSCoder){
         super.init(coder: aDecoder)
-        
     }
     
     override func viewDidLoad() {
-        
         println("EntryListViewController - viewDidLoad()");
-
         super.viewDidLoad()
-        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
@@ -46,7 +37,9 @@ class EntryListViewController: UITableViewController, NSFetchedResultsController
         //self.tableView.registerClass(cellClass: UITableViewCell, forCellReuseIdentifier: "Cell")
         self.fetchedResultsController.performFetch(nil);
         
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: kCellIdentifier)
+        //tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: kCellIdentifier)
+        tableView.registerClass(EntryCell.self, forCellReuseIdentifier: kCellIdentifier)
+
         
         // uncomment this line to load table view cells programmatically
         //tableView.registerNib(UINib(nibName: "NibTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: kCellIdentifier)
@@ -99,7 +92,6 @@ class EntryListViewController: UITableViewController, NSFetchedResultsController
         managedContext.deleteObject(entry);
         
         coreDataStack.saveContext();
-        
     }
     
     //delete - part2
@@ -112,9 +104,7 @@ class EntryListViewController: UITableViewController, NSFetchedResultsController
         //let sectionInfo :NSFetchedResultsSectionInfo = self.fetchedResultsController?.sections(section);
         let sectionInfo : NSFetchedResultsSectionInfo = self.fetchedResultsController.sections?[section] as NSFetchedResultsSectionInfo;
         //var sectionnames = sectionInfo[section]
-        
         return sectionInfo.name;
-        
     }
     
     func entryListFetchRequest() -> NSFetchRequest{
@@ -123,9 +113,9 @@ class EntryListViewController: UITableViewController, NSFetchedResultsController
         let sortDescriptors = [sortDescriptor]
         fetchRequest.sortDescriptors = [sortDescriptor]
         return fetchRequest
-        
     }
     
+    var _fetchedResultsController: NSFetchedResultsController?
     
     var fetchedResultsController: NSFetchedResultsController {
         // return if already initialized
@@ -134,42 +124,34 @@ class EntryListViewController: UITableViewController, NSFetchedResultsController
         }
         
         let coreDataStack: CoreDataStack = CoreDataStack.defaultStack;
-        
         let fetchRequest: NSFetchRequest = self.entryListFetchRequest();
-        
         let managedContext: NSManagedObjectContext = coreDataStack.managedObjectContext!
-        
         let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedContext, sectionNameKeyPath: "sectionName", cacheName: nil)
-        
         aFetchedResultsController.delegate = self
-        
         self._fetchedResultsController = aFetchedResultsController
-        
         return _fetchedResultsController!;
-        
     }
-    
-    var _fetchedResultsController: NSFetchedResultsController?
-    
-    
-    
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        //let reuseIdentifier: NSString = "Cell";
-        // let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as UITableViewCell
-        
+        println("EntryListViewController - cellForRowAtIndexPath()");
         let CellIdentifier: NSString = "Cell";
-        let cell = tableView.dequeueReusableCellWithIdentifier("CellIdentifier", forIndexPath: indexPath) as UITableViewCell
+        let cell: EntryCell = tableView.dequeueReusableCellWithIdentifier("CellIdentifier", forIndexPath: indexPath) as EntryCell;
         
         // Configure the cell...
-        
         let entry: DiaryEntry = self.fetchedResultsController.objectAtIndexPath(indexPath) as DiaryEntry;
+        //cell.textLabel?.text = entry.body;
         
-        cell.textLabel?.text = entry.body;
-        
+        [cell.configureCellForEntry(entry)];
         return cell;
     }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+         //println("EntryListViewController - heightForRowAtIndexPath()");
+        let entryCell: EntryCell = EntryCell();
+        let entry: DiaryEntry = self.fetchedResultsController.objectAtIndexPath(indexPath) as DiaryEntry;
+        return entryCell.heightForEntry(entry);
+    }
+
     
     
     /* called first
@@ -240,7 +222,7 @@ class EntryListViewController: UITableViewController, NSFetchedResultsController
         }
         
     }
-
+    
     
     
     /*
