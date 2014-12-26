@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		170954211A4CC7DB002F0B74 /* CustomObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 170954201A4CC7DB002F0B74 /* CustomObject.m */; };
 		1709AD051A4BAD38001FC05E /* DateFormatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1709AD041A4BAD38001FC05E /* DateFormatManager.swift */; };
 		174F69F31A4A1B070018CDE2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174F69F21A4A1B070018CDE2 /* AppDelegate.swift */; };
 		174F69F61A4A1B070018CDE2 /* Diary.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 174F69F41A4A1B070018CDE2 /* Diary.xcdatamodeld */; };
@@ -34,6 +35,8 @@
 
 /* Begin PBXFileReference section */
 		1709541A1A4C1D0F002F0B74 /* Diary-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Diary-Bridging-Header.h"; sourceTree = "<group>"; };
+		1709541F1A4CC7AC002F0B74 /* CustomObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomObject.h; sourceTree = "<group>"; };
+		170954201A4CC7DB002F0B74 /* CustomObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomObject.m; sourceTree = "<group>"; };
 		1709AD041A4BAD38001FC05E /* DateFormatManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DateFormatManager.swift; path = ../DateFormatManager.swift; sourceTree = "<group>"; };
 		174F69ED1A4A1B070018CDE2 /* Diary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Diary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		174F69F11A4A1B070018CDE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -75,6 +78,8 @@
 		174F69E41A4A1B070018CDE2 = {
 			isa = PBXGroup;
 			children = (
+				1709541F1A4CC7AC002F0B74 /* CustomObject.h */,
+				170954201A4CC7DB002F0B74 /* CustomObject.m */,
 				1709541A1A4C1D0F002F0B74 /* Diary-Bridging-Header.h */,
 				174F6A151A4A1E1A0018CDE2 /* CoreData.framework */,
 				174F69EF1A4A1B070018CDE2 /* Diary */,
@@ -243,6 +248,7 @@
 				1709AD051A4BAD38001FC05E /* DateFormatManager.swift in Sources */,
 				174F6A1E1A4A47B20018CDE2 /* EntryViewController.swift in Sources */,
 				174F6A271A4A8B6E0018CDE2 /* EntryListViewController.swift in Sources */,
+				170954211A4CC7DB002F0B74 /* CustomObject.m in Sources */,
 				174F6A1A1A4A2F4E0018CDE2 /* CoreDataStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

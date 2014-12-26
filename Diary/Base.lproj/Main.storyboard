@@ -61,7 +61,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="q0t-EJ-HEq" kind="presentation" identifier="edit" id="r1R-H3-RVe"/>
+                                    <segue destination="q0t-EJ-HEq" kind="presentation" identifier="edit" id="DGU-HQ-y7H"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -122,6 +122,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="r1R-H3-RVe"/>
+        <segue reference="DGU-HQ-y7H"/>
     </inferredMetricsTieBreakers>
 </document>

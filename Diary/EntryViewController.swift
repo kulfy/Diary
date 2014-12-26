@@ -12,7 +12,20 @@ import CoreData
 
 class EntryViewController: UIViewController {
     
-    var entry:DiaryEntry? = DiaryEntry();
+    
+    class classVar{
+        struct structVar {
+            static var entryOne:DiaryEntry?;
+        }
+        
+        class var entry:DiaryEntry{
+            return structVar.entryOne!;
+        }
+    }
+    
+    var entry: DiaryEntry? = classVar.structVar.entryOne;
+
+    //var entry: DiaryEntry? = DiaryEntry();
     
     @IBOutlet var textField: UITextField!
     
@@ -31,6 +44,9 @@ class EntryViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        println("in viewdidload");
+       // println("viewDidLoad self.entry \(self.entry)");
+
         
         if self.entry != nil {
             self.textField.text = self.entry?.body;
@@ -91,6 +107,12 @@ class EntryViewController: UIViewController {
  
     
     func updateDiaryEntry(){
+        
+        println("in updateDiaryEntry");
+        
+        //println(self.entry?.body);
+
+
         self.entry?.body = self.textField.text;
         
         let coreDataStack: CoreDataStack = CoreDataStack.defaultStack;
@@ -100,7 +122,8 @@ class EntryViewController: UIViewController {
     }
     
     @IBAction func doneWasPressed(sender: AnyObject) {
-        
+        println("in doneWasPressed");
+
         if self.entry != nil{
             [self.updateDiaryEntry()];
         }else{
