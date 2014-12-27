@@ -20,7 +20,7 @@ class DateformatterManager {
         return Static.instance
     }
     
-    class var dateFormatSpelledManager : DateformatterManager {
+    class var dateFormatLongVersionManager : DateformatterManager {
         struct Static {
             static let instance : DateformatterManager = DateformatterManager()
         }

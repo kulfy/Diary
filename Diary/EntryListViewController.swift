@@ -13,7 +13,9 @@ class EntryListViewController: UITableViewController, NSFetchedResultsController
     
     let kCellIdentifier: NSString = "CellIdentifier"
     
-    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!){
+    //var cell: EntryCell = EntryCell()
+    
+   override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!){
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
@@ -29,20 +31,19 @@ class EntryListViewController: UITableViewController, NSFetchedResultsController
         println("EntryListViewController - viewDidLoad()");
         super.viewDidLoad()
         // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        self.clearsSelectionOnViewWillAppear = false
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+         //self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         //self.tableView.registerClass(cellClass: UITableViewCell, forCellReuseIdentifier: "Cell")
         self.fetchedResultsController.performFetch(nil);
         
         //tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: kCellIdentifier)
         tableView.registerClass(EntryCell.self, forCellReuseIdentifier: kCellIdentifier)
-
         
         // uncomment this line to load table view cells programmatically
-        //tableView.registerNib(UINib(nibName: "NibTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: kCellIdentifier)
+        //tableView.registerNib(UINib(nibName: "NibUITableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: kCellIdentifier)
         
         // uncomment this line to load table view cells from IB
         
@@ -53,7 +54,26 @@ class EntryListViewController: UITableViewController, NSFetchedResultsController
         // Dispose of any resources that can be recreated.
     }
     
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using [segue destinationViewController].
+        // Pass the selected object to the new view controller.
+        println("prepareForSegue");
+        println("segue \(segue.identifier)");
+        if segue.identifier == "edit" {
+            println("inside prepareForSegue");
+            let cell: UITableViewCell  = sender? as UITableViewCell;
+            let indexPath: NSIndexPath! = self.tableView.indexPathForCell(cell);
+            let navigationController: UINavigationController = segue.destinationViewController as UINavigationController;
+            let entryViewController:EntryViewController = navigationController.topViewController as EntryViewController;
+            entryViewController.entry = self.fetchedResultsController.objectAtIndexPath(indexPath) as? DiaryEntry;
+        }
+        
+    }
+    
     // MARK: - Table view data source
+
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
@@ -69,6 +89,28 @@ class EntryListViewController: UITableViewController, NSFetchedResultsController
         let sectionInfo = self.fetchedResultsController.sections![section] as NSFetchedResultsSectionInfo
         return sectionInfo.numberOfObjects
     }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        println("EntryListViewController - cellForRowAtIndexPath()");
+        let CellIdentifier: NSString = "Cell";
+        var cell: EntryCell = tableView.dequeueReusableCellWithIdentifier("CellIdentifier", forIndexPath: indexPath) as EntryCell;
+        // Configure the cell...
+        let entry: DiaryEntry = self.fetchedResultsController.objectAtIndexPath(indexPath) as DiaryEntry;
+        
+        
+        //cell.textLabel?.text = entry.body;
+        
+        cell.configureCellForEntry(entry);
+        
+        return cell;
+    }
+    
+        override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+             //println("EntryListViewController - heightForRowAtIndexPath()");
+            var entryCell: EntryCell = EntryCell();
+            let entry: DiaryEntry = self.fetchedResultsController.objectAtIndexPath(indexPath) as DiaryEntry;
+            return entryCell.heightForEntry(entry);
+        }
     
     
     /*
@@ -132,27 +174,6 @@ class EntryListViewController: UITableViewController, NSFetchedResultsController
         return _fetchedResultsController!;
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        println("EntryListViewController - cellForRowAtIndexPath()");
-        let CellIdentifier: NSString = "Cell";
-        let cell: EntryCell = tableView.dequeueReusableCellWithIdentifier("CellIdentifier", forIndexPath: indexPath) as EntryCell;
-        
-        // Configure the cell...
-        let entry: DiaryEntry = self.fetchedResultsController.objectAtIndexPath(indexPath) as DiaryEntry;
-        //cell.textLabel?.text = entry.body;
-        
-        [cell.configureCellForEntry(entry)];
-        return cell;
-    }
-    
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-         //println("EntryListViewController - heightForRowAtIndexPath()");
-        let entryCell: EntryCell = EntryCell();
-        let entry: DiaryEntry = self.fetchedResultsController.objectAtIndexPath(indexPath) as DiaryEntry;
-        return entryCell.heightForEntry(entry);
-    }
-
-    
     
     /* called first
     begins update to `UITableView`
@@ -189,7 +210,7 @@ class EntryListViewController: UITableViewController, NSFetchedResultsController
         self.tableView.endUpdates();
     }
     
-    
+
     func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
         switch (type){
         case NSFetchedResultsChangeType.Insert:
@@ -203,26 +224,9 @@ class EntryListViewController: UITableViewController, NSFetchedResultsController
         }
     }
     
+
     
     // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-        println("prepareForSegue");
-        println("segue \(segue.identifier)");
-        if segue.identifier == "edit" {
-            println("inside prepareForSegue");
-             let cell: UITableViewCell  = sender? as UITableViewCell;
-             let indexPath: NSIndexPath! = self.tableView.indexPathForCell(cell);
-             let navigationController: UINavigationController = segue.destinationViewController as UINavigationController;
-             let entryViewController:EntryViewController = navigationController.topViewController as EntryViewController;
-            entryViewController.entry = self.fetchedResultsController.objectAtIndexPath(indexPath) as? DiaryEntry;
-        }
-        
-    }
-    
     
     
     /*
